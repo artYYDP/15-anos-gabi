@@ -35,9 +35,9 @@ setInterval(atualizarContagemRegressiva, 60000);
 atualizarContagemRegressiva(); // Executa ao carregar a página
 
 // Desativa o clique com o botão direito do mouse
-//document.addEventListener("contextmenu", function (e) {
-//  e.preventDefault();
-//});
+document.addEventListener("contextmenu", function (e) {
+  e.preventDefault();
+});
 
 // Scroll Spy
 const links = document.querySelectorAll('.menu-links a');

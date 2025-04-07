@@ -33,7 +33,18 @@ Este projeto é um site para a festa de 15 anos da Gabriella. Ele reúne diversa
 
 ## Estrutura do Projeto
 
-/site-festa-gabriella/ │ ├── index.html # Página principal com informações, galerias e contagem regressiva ├── confirmar.html # Página com formulário de confirmação de presença (Google Forms embutido) ├── presentes.html # Página com a lista de presentes e modal de confirmação ├── controle-presentes.html # Página protegida por senha para controle dos presentes confirmados ├── style.css # Arquivo de estilos (CSS) └── README.md # Este arquivo
+/site-festa-gabriella/
+├── images
+├───── 01.png
+├───── 02.jpg
+├───── 03.jpg
+├───── 04.jpg
+├── index.html # Página principal com informações, galerias e contagem regressiva
+├── confirmar.html # Página com formulário de confirmação de presença (Google Forms embutido)
+├── presentes.html # Página com a lista de presentes e modal de confirmação
+├── controle-presentes.html # Página protegida por senha para controle dos presentes confirmados
+├── style.css # Arquivo de estilos (CSS)
+└── README.md # Este arquivo
 
 ## Como Usar
 
