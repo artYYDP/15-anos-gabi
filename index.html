@@ -77,5 +77,58 @@
   </footer>
 
   <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const container = document.querySelector('.galeria-container');
+      const imgs = container.querySelectorAll('img');
+      const total = imgs.length;
+      let currentIndex = 0;
+
+      // 👉 Força início na primeira imagem
+      setTimeout(() => {
+        scrollToImage(0);
+      }, 100);
+
+      // Cria os botões de navegação
+      const nav = document.createElement('div');
+      nav.classList.add('galeria-nav');
+      nav.innerHTML = `
+        <button id="prev">&#10094;</button>
+        <button id="next">&#10095;</button>
+      `;
+
+      const galeriaSection = document.getElementById('galeria');
+      galeriaSection.style.position = 'relative';
+      galeriaSection.appendChild(nav);
+
+      function scrollToImage(index) {
+        const imageWidth = container.querySelector('img').clientWidth;
+        const scrollX = imageWidth * index;
+        container.scrollTo({ left: scrollX, behavior: 'smooth' });
+      }
+
+      document.getElementById('prev').addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + total) % total;
+        scrollToImage(currentIndex);
+      });
+
+      document.getElementById('next').addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % total;
+        scrollToImage(currentIndex);
+      });
+
+      // Atualiza o índice quando o usuário rolar manualmente
+      container.addEventListener('scroll', () => {
+        const index = Math.round(container.scrollLeft / container.offsetWidth);
+        currentIndex = index;
+      });
+
+      // 👉 Carrossel automático
+      setInterval(() => {
+        currentIndex = (currentIndex + 1) % total;
+        scrollToImage(currentIndex);
+      }, 3000); // 3 segundos
+    });
+  </script>
 </body>
 </html>

@@ -409,15 +409,41 @@ footer {
 
   .galeria-container {
     display: flex;
-    overflow-x: auto;
+    flex-direction: row;
+    overflow-x: hidden;
     scroll-snap-type: x mandatory;
-    gap: 0;
+    scroll-behavior: smooth;
+    position: relative;
   }
 
   .galeria-container img {
     flex: 0 0 100%;
-    scroll-snap-align: start;
-    border-radius: 0;
-    margin: 0;
+    width: 100%;
+    height: auto;
+    scroll-snap-align: center;
+    object-fit: cover;
+  }
+
+  .galeria-nav {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    padding: 0;
+    transform: translateY(-50%);
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  .galeria-nav button {
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    font-size: 2rem;
+    padding: 5px 10px;
+    cursor: pointer;
+    pointer-events: all;
   }
 }
