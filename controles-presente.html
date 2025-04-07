@@ -203,6 +203,11 @@
       `;
       tbody.appendChild(tr);
     });
+
+    // Desativa o clique com o botão direito do mouse
+    document.addEventListener("contextmenu", function (e) {
+      e.preventDefault();
+    });
   </script>
 </body>
 </html>
