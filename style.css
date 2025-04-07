@@ -1,3 +1,12 @@
+:root {
+  --cor-primaria: #150549;
+  --cor-secundaria: #b631cb;
+  --cor-fundo: #fff0f5;
+  --cor-texto: #333;
+  --cor-texto-claro: #fff;
+  --cor-borda: #ccc;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -12,12 +21,28 @@ body {
 }
 
 header {
-  background: linear-gradient(to right, #490546, #c959ca);
+  background:
+    url('/images/background.png') no-repeat center center / cover,
+    var(--cor-primaria);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   padding: 2rem 1rem;
-  color: white;
+  color: #fff;
   margin-bottom: 2rem;
   margin-top: 3rem;
 }
+
+.img-save-the-date {
+  width: 100%;
+  max-width: 800px;
+  height: 100%;
+  margin: 1rem auto;
+  display: block;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
 
 section {
   margin-top: 2rem;
@@ -32,16 +57,18 @@ form input, form button {
 }
 
 form button {
-  background-color: #ff8ec7;
+  background-color: var(--cor-primaria);
   border: none;
   color: white;
   cursor: pointer;
 }
 
 footer {
-  background-color: #ffe4ec;
+  background-color: var(--cor-primaria);
   padding: 1rem;
   margin-top: 2rem;
+  color: #fff;
+  font-weight: bold;
 }
 
 .menu-topo {
@@ -61,7 +88,7 @@ footer {
 .menu-logo {
   font-weight: bold;
   font-size: 1.2rem;
-  color: #d63384;
+  color: var(--cor-primaria);
 }
 
 .menu-links {
@@ -101,7 +128,7 @@ footer {
 }
 
 #sobre-gabi h2 {
-  color: #d63384;
+  color: var(--cor-secundaria);
   margin-bottom: 1rem;
 }
 
@@ -202,7 +229,7 @@ footer {
 .btn-presentear {
   padding: 0.4rem 1rem;
   border: none;
-  background-color: #d63384;
+  background-color: var(--cor-primaria);
   color: white;
   border-radius: 8px;
   cursor: pointer;
@@ -289,7 +316,7 @@ footer {
 
 .botao-confirmar {
   display: inline-block;
-  background-color: #d63384;
+  background-color: var(--cor-primaria);
   color: white;
   font-size: 1.25rem;
   font-weight: bold;
