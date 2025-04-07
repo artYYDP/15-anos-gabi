@@ -1,0 +1,353 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #fff0f5;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+header {
+  background: linear-gradient(to right, #490546, #c959ca);
+  padding: 2rem 1rem;
+  color: white;
+  margin-bottom: 2rem;
+  margin-top: 3rem;
+}
+
+section {
+  margin-top: 2rem;
+  padding: 2rem 1rem;
+}
+
+form input, form button {
+  padding: 0.5rem;
+  margin: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+form button {
+  background-color: #ff8ec7;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+footer {
+  background-color: #ffe4ec;
+  padding: 1rem;
+  margin-top: 2rem;
+}
+
+.menu-topo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
+
+.menu-logo {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #d63384;
+}
+
+.menu-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+.menu-links li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.menu-links li a.ativo {
+  color: #d63384;
+  font-weight: bold;
+  border-bottom: 2px solid #d63384;
+}
+
+
+.menu-links li a:hover {
+  color: #d63384;
+}
+
+#sobre-gabi {
+  background-color: #fffafc;
+  padding: 2rem 1rem;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+#sobre-gabi h2 {
+  color: #d63384;
+  margin-bottom: 1rem;
+}
+
+#sobre-gabi p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  color: #444;
+}
+
+.galeria-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding: 1rem;
+}
+
+.galeria-container img {
+  height: 350px;
+  width: auto;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.galeria-container img:hover {
+  transform: scale(1.05);
+}
+
+.formulario-container {
+  max-width: 800px;
+  margin: 2rem auto;
+}
+
+.formulario-google {
+  width: 100%;
+  height: 160vh; /* Ajuste conforme o tamanho do formulário */
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+#contador-section {
+  text-align: center;
+  padding: 2rem 1rem;
+  background-color: #e1c5d0;
+}
+
+#contador {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.mapa-container {
+  margin-top: 1rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.iframe-mapa {
+  width: 100%;
+  height: 350px;
+  border: none;
+}
+
+.iframe-formulario-google {
+  background-color: #e1c5d0;
+}
+
+#presentes {
+  text-align: center;
+}
+
+.presente-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 600px;
+  margin: 0.5rem auto;
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  gap: 1rem;
+}
+
+.presente-item strong {
+  text-transform: capitalize;
+}
+
+.btn-presentear {
+  padding: 0.4rem 1rem;
+  border: none;
+  background-color: #d63384;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-presentear:disabled {
+  background-color: gray;
+  cursor: not-allowed;
+}
+
+.link-item {
+  color: #d63384;
+  font-weight: bold;
+  text-decoration: none;
+  margin-left: 10px;
+}
+
+.link-item:hover {
+  text-decoration: underline;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1001;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 2rem 2rem 2.5rem;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  animation: slideUp 0.3s ease;
+}
+
+.modal-content h3 {
+  margin-bottom: 1rem;
+  color: #d63384;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: border 0.2s ease;
+}
+
+.modal-content input:focus {
+  outline: none;
+  border-color: #d63384;
+}
+
+.modal-content button {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 12px;
+  margin: 0.5rem;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.cta-confirmar {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.botao-confirmar {
+  display: inline-block;
+  background-color: #d63384;
+  color: white;
+  font-size: 1.25rem;
+  font-weight: bold;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.botao-confirmar:hover {
+  background-color: #b82b6e;
+  transform: scale(1.05);
+}
+
+#btn-confirmar {
+  background-color: #d63384;
+  color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#btn-confirmar:hover {
+  background-color: #b82b6e;
+  transform: scale(1.05);
+}
+
+.modal-content button:not(#btn-confirmar) {
+  background-color: #eee;
+  color: #444;
+}
+
+.modal-content button:not(#btn-confirmar):hover {
+  background-color: #ddd;
+  transform: scale(1.03);
+}
+
+/* Animações */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
+.erro-senha {
+  color: red;
+}
+
+.conteudo {
+  display: none;
+}
+
+.mensagem-sucesso {
+  display: none;
+  color: green;
+  font-weight: bold;
+  margin-top: 1rem;
+}

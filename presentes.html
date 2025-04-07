@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lista de Presentes</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <nav class="menu-topo">
+    <div class="menu-logo">🎀 Gabriella 15 Anos</div>
+    <ul class="menu-links">
+      <li><a href="index.html">Sobre</a></li>
+      <li><a href="local.html">Local</a></li>
+      <li><a href="confirmar.html">Confirmação</a></li>
+      <li><a href="presentes.html">Lista de Presentes</a></li>
+    </ul>
+  </nav>
+
+  <header>
+    <h1>Lista de Presentes 🎁</h1>
+  </header>
+
+  <main>
+    <section id="presentes">
+      <h2>Lista de Presentes</h2>
+
+      <div class="presente-item" data-id="presente1" data-item="Kit maquiagem">
+        <span>💄 Kit maquiagem</span>
+        <a href="https://lista.mercadolivre.com.br/beleza-cuidado-pessoal/maquiagem/kit-maquiagem/ruby-rose/kit-maquiagem-adolescente_Frete_Full_NoIndex_True#applied_filter_id%3Dshipping%26applied_filter_name%3DTipo+de+envio%26applied_filter_order%3D4%26applied_value_id%3Dfulfillment%26applied_value_name%3DFull%26applied_value_order%3D1%26applied_value_results%3D9%26is_custom%3Dfalse" class="link-item" target="_blank" rel="noopener">Link</a>
+        <strong class="status">disponível</strong>
+        <button class="btn-presentear">Presentear</button>
+      </div>
+
+      <div class="presente-item" data-id="presente2" data-item="Fone Bluetooth">
+        <span>🎧 Fone Bluetooth</span>
+        <a href="https://lista.mercadolivre.com.br/celulares-telefones/acessorios-celulares/fones-kits-viva-voz/com-bluetooth/baseus/fone-de-ouvido-bluetooth_Frete_Full_NoIndex_True#applied_filter_id%3Dshipping%26applied_filter_name%3DTipo+de+envio%26applied_filter_order%3D5%26applied_value_id%3Dfulfillment%26applied_value_name%3DFull%26applied_value_order%3D1%26applied_value_results%3D28%26is_custom%3Dfalse" class="link-item" target="_blank" rel="noopener">Link</a>
+        <strong class="status">disponível</strong>
+        <button class="btn-presentear">Presentear</button>
+      </div>
+
+      <div class="presente-item" data-id="presente3" data-item='Livro "A Seleção"'>
+        <span>📚 Livro "Eu e Esse meu Coração"</span>
+        <a href="https://www.amazon.com.br/Eu-esse-meu-cora%C3%A7%C3%A3o-Hunter/dp/8555391210?__mk_pt_BR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=2GNUCBQN6KKL1&dib=eyJ2IjoiMSJ9.Y6XSd1rt3IR9Jg1vwAH3ENeSV2Aix7It29ii5pdMNBPSAqmH8DWN0Gn0AV1pRbmMr5fUBp65rfX-R-EOOOoV-8mBUSooff7HtOo8M3e8MKt3hbxtD-EZ-MgRqnHqJUT5JyobUlrefk1knE-EVKKNLDxnu2wpComFGH8sXliOEOK0x7aj6gOxWMiZ0COZekg3KsZb1j9uRvodsJwUiuR7Nw1-v7wyUF9B6VtCcyIKGcS86RR-mkccskqakxQ8aAU-FUAa4B6fxn2jCVEa4SqRxificrXt9HrWmpjHgdy3GQI.XaZAyzzW4faSNT72X4PBISogyOASQIQM1nItSahbudc&dib_tag=se&keywords=livro&qid=1743987979&sprefix=livro%2Caps%2C221&sr=8-44" class="link-item" target="_blank" rel="noopener">Link</a>
+        <strong class="status">disponível</strong>
+        <button class="btn-presentear">Presentear</button>
+      </div>
+    </section>
+
+    <div class="modal" id="modal-presente">
+      <div class="modal-content">
+        <h3 id="item-escolhido"></h3>
+        <input type="text" id="nome" placeholder="Seu nome" required><br><br>
+        <input type="tel" id="telefone" placeholder="Seu telefone" required><br><br>
+        <button id="btn-confirmar">Sim, quero presentear</button>
+        <button onclick="fecharModal()">Cancelar</button>
+        <p id="mensagem-sucesso">
+          Presente confirmado! 🎉
+        </p>
+
+      </div>
+    </div>
+  </main>
+  <script>
+    // Modal de presente
+    const modal = document.getElementById("modal-presente");
+    const itemEscolhido = document.getElementById("item-escolhido");
+    const nomeInput = document.getElementById("nome");
+    const telefoneInput = document.getElementById("telefone");
+
+    let itemAtual = null;
+
+    const dados = JSON.parse(localStorage.getItem("presentesGabi")) || [];
+
+    document.querySelectorAll(".presente-item").forEach(divItem => {
+      const link = divItem.dataset.link;
+
+      // Cria o link clicável se ainda não existe
+      if (!divItem.querySelector(".link-item") && link) {
+        const a = document.createElement("a");
+        a.href = link;
+        a.target = "_blank";
+        a.className = "link-item";
+        a.textContent = "Link";
+        a.style.margin = "0 10px";
+        divItem.insertBefore(a, divItem.querySelector(".status"));
+      }
+    });
+
+    // Atualiza a UI com base no localStorage ao carregar a página
+    document.querySelectorAll(".presente-item").forEach(divItem => {
+      const id = divItem.dataset.id;
+      const registro = dados.find(d => d.id === id);
+
+      if (registro) {
+        const statusSpan = divItem.querySelector(".status");
+        statusSpan.textContent = "escolhido";
+        statusSpan.style.color = "crimson";
+
+        const botao = divItem.querySelector(".btn-presentear");
+        botao.disabled = true;
+        botao.textContent = "Indisponível";
+        botao.style.opacity = "0.6";
+        botao.style.cursor = "not-allowed";
+        botao.style.backgroundColor = "#ccc";
+        botao.style.color = "#555";
+      }
+    });
+
+    // Abrir o modal
+    document.querySelectorAll(".btn-presentear").forEach(botao => {
+      botao.addEventListener("click", e => {
+        itemAtual = e.target.closest(".presente-item");
+        const nomeItem = itemAtual.dataset.item;
+
+        itemEscolhido.textContent = `Deseja presentear a Gabi com: "${nomeItem}"?`;
+        modal.style.display = "flex";
+      });
+    });
+
+    function fecharModal() {
+      modal.style.display = "none";
+      nomeInput.value = '';
+      telefoneInput.value = '';
+    }
+
+    // Confirmar presente
+    document.getElementById("btn-confirmar").addEventListener("click", () => {
+      const nome = nomeInput.value.trim();
+      const telefone = telefoneInput.value.trim();
+
+      if (!nome || !telefone) {
+        alert("Por favor, preencha seu nome e telefone.");
+        return;
+      }
+
+      const idItem = itemAtual.dataset.id;
+      const nomeItem = itemAtual.dataset.item;
+
+      // Verifica se já existe registro
+      const jaRegistrado = dados.some(d => d.id === idItem);
+      if (jaRegistrado) {
+        alert("Este presente já foi escolhido!");
+        fecharModal();
+        return;
+      }
+
+      // Salva o novo registro
+      dados.push({
+        id: idItem,
+        item: nomeItem,
+        quem: nome,
+        telefone: telefone,
+        quando: new Date().toLocaleString()
+      });
+
+      localStorage.setItem("presentesGabi", JSON.stringify(dados));
+
+      // Atualiza UI
+      const statusSpan = itemAtual.querySelector(".status");
+      statusSpan.textContent = "escolhido";
+      statusSpan.style.color = "crimson";
+
+      const botao = itemAtual.querySelector(".btn-presentear");
+      botao.disabled = true;
+      botao.textContent = "Indisponível";
+      botao.style.opacity = "0.6";
+      botao.style.cursor = "not-allowed";
+      botao.style.backgroundColor = "#ccc";
+      botao.style.color = "#555";
+
+      fecharModal();
+    });
+  </script>
+</body>
+</html>

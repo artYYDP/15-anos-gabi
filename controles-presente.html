@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Controle de Presentes</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #fefefe;
+    color: #333;
+    padding: 2rem;
+    margin: 0;
+  }
+
+  #login-container {
+    max-width: 400px;
+    margin: 5rem auto;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 16px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+
+  #login-container input[type="password"] {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    margin-top: 1rem;
+  }
+
+  #login-container button {
+    margin-top: 1rem;
+    background-color: #d63384;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  #login-container button:hover {
+    background-color: #b82b6e;
+  }
+
+  #erro-senha {
+    color: crimson;
+    margin-top: 0.5rem;
+  }
+
+  #conteudo {
+    max-width: 900px;
+    margin: 3rem auto;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  thead {
+    background-color: #d63384;
+    color: #fff;
+  }
+
+  thead th {
+    padding: 1rem;
+    text-align: center; /* Centraliza os títulos */
+    font-size: 1rem;
+    border-right: 1px solid rgba(255, 255, 255, 0.3); /* Linha entre colunas */
+  }
+
+  thead th:last-child {
+    border-right: none;
+  }
+
+  tbody td {
+    padding: 1rem;
+    border-bottom: 1px solid #eee; /* Linha horizontal */
+    border-right: 1px solid #f0f0f0; /* Linha vertical leve */
+    text-align: center; /* Centraliza o conteúdo das células */
+  }
+
+  tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  tbody td:last-child {
+    border-right: none;
+  }
+
+  tbody tr:hover {
+    background-color: #f8f8f8;
+  }
+
+
+  .btn-zerar {
+    margin-top: 2rem;
+    background-color: crimson;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn-zerar:hover {
+    background-color: darkred;
+  }
+  </style>
+</head>
+<body>
+  <div id="login-container">
+    <h2>🔒 Acesso restrito</h2>
+    <p>Digite a senha para visualizar os presentes:</p>
+    <input type="password" id="senha" placeholder="Senha" />
+    <button onclick="verificarSenha()">Entrar</button>
+    <p id="erro-senha"></p>
+  </div>
+
+  <div id="conteudo">
+  <h1>🎁 Controle de Presentes</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Quem</th>
+        <th>Telefone</th>
+        <th>Data/Hora</th>
+      </tr>
+    </thead>
+    <tbody id="tabela-presentes"></tbody>
+  </table>
+
+  <button type="button" onclick="zerarPresentes()" class="btn-zerar">
+    Zerar lista de presentes
+  </button>
+</div>
+  <script>
+    // Função para verificar a senha
+    document.getElementById("conteudo").style.display = "none";
+    const senhaCorreta = "4632";
+    const TEMPO_VALIDO_MS = 60 * 1000; // 1 minuto
+
+    const loginContainer = document.getElementById("login-container");
+    const conteudo = document.getElementById("conteudo");
+    const erroSenha = document.getElementById("erro-senha");
+
+    // Verifica se há um login ainda válido
+    const acessoAnterior = localStorage.getItem("controleGabi");
+    if (acessoAnterior && (Date.now() - Number(acessoAnterior)) < TEMPO_VALIDO_MS) {
+      loginContainer.style.display = "none";
+      conteudo.style.display = "block";
+    } else {
+      conteudo.style.display = "none";
+    }
+
+    function verificarSenha() {
+      const senhaDigitada = document.getElementById("senha").value;
+      if (senhaDigitada === senhaCorreta) {
+        localStorage.setItem("controleGabi", Date.now());
+        loginContainer.style.display = "none";
+        conteudo.style.display = "block";
+        erroSenha.textContent = "";
+      } else {
+        erroSenha.textContent = "Senha incorreta. Tente novamente.";
+      }
+    }
+
+    // Função para zerar a lista de presentes
+    function zerarPresentes() {
+      const confirmar = confirm("Tem certeza que deseja limpar a lista de presentes?");
+      if (confirmar) {
+        localStorage.removeItem("presentesGabi");
+        alert("Lista de presentes foi resetada.");
+        location.reload();
+      }
+    }
+
+    // Carregar os dados do localStorage e preencher a tabela
+    const tbody = document.getElementById("tabela-presentes");
+    const dados = JSON.parse(localStorage.getItem("presentesGabi")) || [];
+
+    dados.forEach(d => {
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${d.item}</td>
+        <td>${d.quem}</td>
+        <td>${d.telefone}</td>
+        <td>${d.quando}</td>
+      `;
+      tbody.appendChild(tr);
+    });
+  </script>
+</body>
+</html>
