@@ -22,7 +22,7 @@ body {
 
 header {
   background:
-    url('/images/background.png') no-repeat center center / cover,
+    url('/images/background.webp') no-repeat center center / cover,
     var(--cor-primaria);
   background-size: cover;
   background-position: center;
@@ -213,13 +213,26 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 600px;
+  max-width: 900px;
   margin: 0.5rem auto;
   background-color: #fff;
   padding: 1rem;
   border-radius: 12px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.05);
   gap: 1rem;
+}
+
+.presente-item > * {
+  flex: 1;
+  text-align: center;
+}
+
+.presente-item span {
+  text-align: left;
+}
+
+.presente-item .btn-presentear {
+  flex: none;
 }
 
 .presente-item strong {
@@ -236,20 +249,30 @@ footer {
   font-weight: bold;
 }
 
+.btn-presentear:hover {
+  background-color: #d63384;
+}
+
 .btn-presentear:disabled {
   background-color: gray;
   cursor: not-allowed;
 }
 
+.status {
+  font-weight: normal;
+  color: green;
+  text-transform: capitalize;
+}
+
 .link-item {
-  color: #d63384;
-  font-weight: bold;
-  text-decoration: none;
+  color: var(--cor-primaria);
+  font-weight: normal;
+  text-decoration: underline;
   margin-left: 10px;
 }
 
 .link-item:hover {
-  text-decoration: underline;
+  color: #d63384;
 }
 
 .modal {
@@ -377,4 +400,24 @@ footer {
   color: green;
   font-weight: bold;
   margin-top: 1rem;
+}
+
+@media screen and (max-width: 768px) {
+  .menu-logo {
+    display: none;
+  }
+
+  .galeria-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 0;
+  }
+
+  .galeria-container img {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+    border-radius: 0;
+    margin: 0;
+  }
 }
