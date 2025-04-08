@@ -1,6 +1,7 @@
 :root {
   --cor-primaria: #150549;
-  --cor-secundaria: #b631cb;
+  --cor-tres: #d63384;
+  --cor-secundaria: #ffc657;
   --cor-fundo: #fff0f5;
   --cor-texto: #333;
   --cor-texto-claro: #fff;
@@ -12,7 +13,7 @@ html {
 }
 
 body {
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Nunito', sans-serif;
   background-color: #fff0f5;
   color: #333;
   margin: 0;
@@ -42,7 +43,6 @@ header {
   border-radius: 16px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
-
 
 section {
   margin-top: 2rem;
@@ -128,7 +128,7 @@ footer {
 }
 
 #sobre-gabi h2 {
-  color: var(--cor-secundaria);
+  color: var(--cor-primaria);
   margin-bottom: 1rem;
 }
 
@@ -187,18 +187,17 @@ footer {
 
 .mapa-container {
   margin-top: 1rem;
+  width: 100%;
   max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  margin: 2rem auto;
+  padding: 0 1rem;
 }
 
 .iframe-mapa {
   width: 100%;
-  height: 350px;
+  height: 300px;
   border: none;
+  border-radius: 12px;
 }
 
 .iframe-formulario-google {
@@ -402,6 +401,55 @@ footer {
   margin-top: 1rem;
 }
 
+button {
+  font-size: 1.2em;
+  padding: 0.6em 0.8em;
+  border-radius: 0.5em;
+  border: none;
+  background-color: var(--cor-primaria);
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px #000000b4;
+  z-index: 1;
+  position: relative;
+}
+
+.container {
+  display: inline-block;
+  padding: 3px;
+  background: linear-gradient(90deg, var(--cor-tres), var(--cor-secundaria));
+  border-radius: 1em;
+  transition: all 0.4s ease;
+  position: relative;
+  margin-bottom: 2em;
+}
+
+.container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 0.9em;
+  z-index: -1;
+  filter: blur(0);
+  transition: filter 0.4s ease;
+}
+
+.container:hover::before {
+  background: linear-gradient(90deg,var(--cor-tres), var(--cor-secundaria));
+  filter: blur(1.2em);
+}
+
+.container:active::before {
+  filter: blur(0.2em);
+}
+
+.galeria-nav {
+  display: none;
+}
+
 @media screen and (max-width: 768px) {
   .menu-logo {
     display: none;
@@ -447,3 +495,4 @@ footer {
     pointer-events: all;
   }
 }
+

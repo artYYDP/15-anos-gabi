@@ -6,6 +6,7 @@
   <link rel="icon" href="images/ico.ico" type="image/x-icon" />
   <title>Festa da Gabi - 15 Anos</title>
   <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <nav class="menu-topo">
@@ -23,8 +24,8 @@
     <p id="contador">⏱️ Calculando...</p>
   </header>
 
-  <div class="cta-confirmar">
-    <a href="confirmar.html" class="botao-confirmar">Confirme a sua presença!</a>
+  <div class="container">
+    <button class="button" id="btnConfirmar">Confirme a sua presença!</button>
   </div>
 
   <section id="sobre-gabi">
@@ -78,6 +79,11 @@
 
   <script src="script.js"></script>
   <script>
+    // Botão de Confirmação
+    document.getElementById('btnConfirmar').addEventListener('click', function () {
+      window.location.href = 'confirmar.html';
+    });
+
     document.addEventListener('DOMContentLoaded', function () {
       const container = document.querySelector('.galeria-container');
       const imgs = container.querySelectorAll('img');
@@ -122,12 +128,6 @@
         const index = Math.round(container.scrollLeft / container.offsetWidth);
         currentIndex = index;
       });
-
-      // 👉 Carrossel automático
-      setInterval(() => {
-        currentIndex = (currentIndex + 1) % total;
-        scrollToImage(currentIndex);
-      }, 3000); // 3 segundos
     });
   </script>
 </body>
